@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promoção Homem-Aranha</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('fundo.jpeg'); /* Imagem de fundo */
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-position: center;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.9); /* Fundo branco com transparência */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+
+        .header {
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #e60000; /* Vermelho Homem-Aranha */
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        .header h2 {
+            color: #0056b3; /* Azul Homem-Aranha */
+            font-size: 14px;
+            margin-top: 0;
+        }
+
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 200px; /* Altura ajustada */
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            background-color: transparent; /* Fundo transparente */
+        }
+
+        .carousel img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Ajusta a imagem para caber no contêiner sem cortar */
+            display: none;
+        }
+
+        .carousel img.active {
+            display: block;
+        }
+
+        .highlight {
+            text-align: center;
+            padding: 15px 0;
+            background-color: #0056b3; /* Fundo azul Homem-Aranha */
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+            margin-bottom: 15px;
+        }
+
+        .highlight img {
+            width: 80px; /* Tamanho ajustado para o destaque */
+            margin: 0 10px;
+        }
+
+        .highlight h2 {
+            margin: 5px 0;
+            color: #fff; /* Texto branco */
+            font-size: 18px;
+        }
+
+        .price {
+            font-size: 22px;
+            color: #e60000; /* Vermelho Homem-Aranha */
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .cta {
+            text-align: center;
+            margin: 10px 0;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #e60000; /* Vermelho Homem-Aranha */
+            padding: 8px;
+            border-radius: 8px;
+            border: 2px solid #0056b3; /* Azul Homem-Aranha */
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+
+        .cta:hover {
+            background-color: #ff6666; /* Vermelho claro ao passar o mouse */
+        }
+
+        .timer {
+            text-align: center;
+            font-size: 18px;
+            color: #e60000; /* Vermelho Homem-Aranha */
+            margin: 10px 0;
+        }
+
+        .buy-button {
+            display: block;
+            width: 150px;
+            margin: 15px auto;
+            padding: 10px;
+            font-size: 16px;
+            color: white;
+            background-color: #0056b3; /* Azul Homem-Aranha */
+            text-align: center;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .buy-button:hover {
+            background-color: #003b80; /* Azul mais escuro ao passar o mouse */
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>Promoção Máscara do Homem-Aranha + Brindes Exclusivos!</h1>
+            <h2>Aproveite e leve para casa brindes incríveis até o Dia das Crianças!</h2>
+        </div>
+
+        <div class="carousel">
+            <img src="mascara1.jpg" alt="Máscara Homem-Aranha 1" class="active">
+            <img src="mascara2.jpg" alt="Máscara Homem-Aranha 2">
+            <img src="mascara3.jpg" alt="Máscara Homem-Aranha 3">
+            <img src="mascara4.jpg" alt="Máscara Homem-Aranha 3">
+            <img src="mascara5.jpg" alt="Máscara Homem-Aranha 3">
+        </div>
+
+        <div class="highlight">
+            <h2>Ganhe de Brinde: Chaveiro e Boneco Homem-Aranha!</h2>
+            <img src="boneco.webp" alt="Boneco Homem-Aranha">
+            <img src="chaveiro.webp" alt="Chaveiro Homem-Aranha">
+        </div>
+
+        <div class="price">
+            <p>Apenas R$ 178,00 com frete grátis!</p>
+        </div>
+
+        <div class="timer">
+            <p>Frete grátis termina em: <span id="timer">03:00</span></p>
+        </div>
+
+        <div class="cta">
+            <p>Promoção válida até o Dia das Crianças. Não perca!</p>
+        </div>
+
+        <a href="#" class="buy-button" id="buy-button">Compre Já</a> <!-- Adicione o link de pagamento aqui -->
+
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.carousel img');
+
+        function showNextImage() {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].classList.add('active');
+        }
+
+        setInterval(showNextImage, 3000); // Troca de imagem a cada 3 segundos
+
+        // Timer de 3 minutos para o frete grátis
+        let timeLeft = 180; // 3 minutos em segundos
+
+        function updateTimer() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timer').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+            if (timeLeft > 0) {
+                timeLeft--;
+            } else {
+                document.getElementById('timer').textContent = "Expirado!";
+            }
+        }
+
+        setInterval(updateTimer, 1000);
+
+        // Local para o link de pagamento
+        document.getElementById('buy-button').addEventListener('click', function() {
+            // Substitua pelo link de pagamento real
+            window.location.href = "https://www.jessgostore.com.br/checkouts/cn/Z2NwLXVzLWVhc3QxOjAxSjdZMTNFSFJFSE5NRFo2OTUyWVlWNTBa";
+        });
+    </script>
+</body>
+</html>
